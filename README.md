@@ -146,19 +146,19 @@ graph TD
     class Quantity pink
     class Category blue
     
-    UserInterface o-- RecipeBook : "myBook"
-    RecipeBook *-- ListRecipe : "recipes"
-    ListRecipe o-- Recipe : "contains"
-    Recipe *-- Author : "author"
-    Recipe *-- Category : "category"
-    Recipe *-- Duration : "prepTime"
-    Recipe *-- Procedure : "procedure"
-    Recipe *-- Name : "recipeName"
-    Recipe *-- ListIngredient : "ingredients"
-    ListIngredient o-- Ingredient : "contains"
-    Ingredient *-- Name : "ingredientName"
-    Ingredient *-- Quantity : "quantity"
-    Author *-- Name : "authorName"
+    UserInterface -- "myBook" o-- RecipeBook
+    RecipeBook -- "recipes" *-- ListRecipe
+    ListRecipe -- "contains" o-- Recipe
+    Recipe -- "author" *-- Author
+    Recipe -- "category" *-- Category
+    Recipe -- "prepTime" *-- Duration
+    Recipe -- "procedure" *-- Procedure
+    Recipe -- "recipeName" *-- Name
+    Recipe -- "ingredients" *-- ListIngredient
+    ListIngredient -- "contains" o-- Ingredient
+    Ingredient -- "ingredientName" *-- Name
+    Ingredient -- "quantity" *-- Quantity
+    Author -- "authorName" *-- Name
 
     class Recipe {
       <<class>>
