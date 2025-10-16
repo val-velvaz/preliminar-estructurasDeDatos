@@ -44,7 +44,7 @@ Este proyecto fue creado con mucho cariño utilizando las siguientes herramienta
 <div align="center">
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white&color=FFD1DC" alt="C++">
   <img src="https://img.shields.io/badge/Makefile-4298B8?style=for-the-badge&logo=gnu-make&logoColor=white&color=D4F0F0" alt="Makefile">
-  <img src="https://img.shields.io/badge/Visual%2BStudio%2BCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white&color=C1E1C1" alt="VSCode">
+  <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white&color=C1E1C1" alt="VSCode">
 </div>
 
 ---
@@ -103,157 +103,41 @@ Este proyecto fue creado con mucho cariño utilizando las siguientes herramienta
 
 ### 🏛️ Diagrama de Arquitectura (UML)
 
-Aquí tienes un vistazo a cómo se conectan todas las piezas de este adorable proyecto:
+Aquí tienes un vistazo a cómo se conectan todas las piezas de este adorable proyecto, ¡compatible con Mermaid v8!
 
 ```mermaid
 graph TD
-    classDef pink fill:#FFD1DC,stroke:#FFB6C1,stroke-width:2px,color:#333;
-    classDef green fill:#D4F0F0,stroke:#A2D4D4,stroke-width:2px,color:#333;
-    classDef yellow fill:#FFFACD,stroke:#FFEC8B,stroke-width:2px,color:#333;
-    classDef blue fill:#C1E1C1,stroke:#A9C9A9,stroke-width:2px,color:#333;
-
     subgraph "Core"
-        UserInterface(UserInterface)
-        RecipeBook(RecipeBook)
-        Recipe(Recipe)
-        ListRecipe["List<Recipe>"]
-        Ingredient(Ingredient)
-        ListIngredient["List<Ingredient>"]
+        UserInterface["UserInterface"]
+        RecipeBook["RecipeBook<br>-recipes: List&lt;Recipe&gt;<br>+addRecipe(recipe: const Recipe&)<br>+findRecipeByName(name: const Name&): int<br>+deleteRecipeByName(name: const Name&)<br>+sortRecipes(criteria: int, algorithm: int)<br>+saveToFile(filename: const string&)<br>+loadFromFile(filename: const string&)"]
+        Recipe["Recipe<br>-recipeName: Name<br>-author: Author<br>-category: Category<br>-prepTime: Duration<br>-procedure: Procedure<br>-ingredients: List&lt;Ingredient&gt;<br>+getName(): Name<br>+getCategory(): Category<br>+toString(): string"]
+        ListRecipe["List&lt;Recipe&gt;"]
+        Ingredient["Ingredient<br>-ingredientName: Name<br>-quantity: Quantity<br>+getName(): const Name&<br>+getQuantity(): const Quantity&"]
+        ListIngredient["List&lt;Ingredient&gt;"]
     end
 
     subgraph "Data Models"
-        Author(Author)
-        Name(Name)
-        Duration(Duration)
-        Procedure(Procedure)
-        Quantity(Quantity)
+        Author["Author<br>-authorName: Name"]
+        Name["Name<br>-value: string"]
+        Duration["Duration<br>-minutes: int"]
+        Procedure["Procedure<br>-steps: string"]
+        Quantity["Quantity<br>-value: string"]
     end
     
     subgraph "Enums"
-        Category(Category)
+        Category["<<enumeration>><br>Category<br>DESAYUNO<br>COMIDA<br>CENA<br>NAVIDENO<br>NONE"]
     end
     
-    class UserInterface pink
-    class RecipeBook blue
-    class Recipe green
-    class ListRecipe yellow
-    class ListIngredient yellow
-    class Ingredient green
-    class Author pink
-    class Name pink
-    class Duration pink
-    class Procedure pink
-    class Quantity pink
-    class Category blue
-    
-    UserInterface o-- "myBook" RecipeBook
-    RecipeBook *-- "recipes" ListRecipe
-    ListRecipe o-- " " Recipe
-    Recipe *-- "author" Author
-    Recipe *-- "category" Category
-    Recipe *-- "prepTime" Duration
-    Recipe *-- "procedure" Procedure
-    Recipe *-- "recipeName" Name
-    Recipe *-- "ingredients" ListIngredient
-    ListIngredient o-- " " Ingredient
-    Ingredient *-- "ingredientName" Name
-    Ingredient *-- "quantity" Quantity
-    Author *-- "authorName" Name
-
-    class Recipe {
-      <<class>>
-      -recipeName: Name
-      -author: Author
-      -category: Category
-      -prepTime: Duration
-      -procedure: Procedure
-      -ingredients: List<Ingredient>
-      +getName(): Name
-      +setName(name: const Name&)
-      +getAuthor(): Author
-      +setAuthor(author: const Author&)
-      +getCategory(): Category
-      +setCategory(category: Category)
-      +getPrepTime(): Duration
-      +setPrepTime(prepTime: const Duration&)
-      +getProcedure(): Procedure
-      +setProcedure(procedure: const Procedure&)
-      +getIngredients(): const List<Ingredient>&
-      +addIngredient(ingredient: const Ingredient&)
-      +deleteIngredient(ingredientName: const Name&): bool
-      +deleteAllIngredients()
-      +modifyIngredientQuantity(ingredientName: const Name&, newQuantity: const Quantity&): bool
-      +categoryToString(): string
-      +toString(): string
-      +compareByName(a: const Recipe&, b: const Recipe&): int
-      +compareByPrepTime(a: const Recipe&, b: const Recipe&): int
-    }
-    
-    class RecipeBook {
-      <<class>>
-      -recipes: List<Recipe>
-      +addRecipe(recipe: const Recipe&)
-      +findRecipeByName(name: const Name&): int
-      +findRecipeByCategory(category: Category): Recipe*
-      +deleteRecipeByName(name: const Name&)
-      +deleteAllRecipes()
-      +sortRecipes(criteria: int, algorithm: int)
-      +getRecipe(index: int): Recipe&
-      +saveToFile(filename: const string&)
-      +loadFromFile(filename: const string&)
-    }
-    
-    class Ingredient {
-      <<class>>
-      -ingredientName: Name
-      -quantity: Quantity
-      +getName(): const Name&
-      +getQuantity(): const Quantity&
-    }
-    
-    class Name {
-      <<class>>
-      -value: string
-    }
-    
-    class Quantity {
-      <<class>>
-      -value: string
-    }
-    
-    class Author {
-      <<class>>
-      -authorName: Name
-    }
-    
-    class Duration {
-      <<class>>
-      -hours: int
-      -minutes: int
-      -seconds: int
-      +getTotalInSeconds(): int
-    }
-    
-    class Procedure {
-      <<class>>
-      -steps: string
-    }
-    
-    class ListRecipe {
-      <<template>>
-      T: Recipe
-    }
-    
-    class ListIngredient {
-      <<template>>
-      T: Ingredient
-    }
-    
-    class Category {
-      <<enumeration>>
-      DESAYUNO
-      COMIDA
-      CENA
-      NAVIDENO
-      NONE
-    }
+    UserInterface o-- RecipeBook : myBook
+    RecipeBook *-- ListRecipe : recipes
+    ListRecipe o-- Recipe : "contains"
+    Recipe *-- Author : author
+    Recipe *-- Category : category
+    Recipe *-- Duration : prepTime
+    Recipe *-- Procedure : procedure
+    Recipe *-- Name : recipeName
+    Recipe *-- ListIngredient : ingredients
+    ListIngredient o-- Ingredient : "contains"
+    Ingredient *-- Name : ingredientName
+    Ingredient *-- Quantity : quantity
+```
