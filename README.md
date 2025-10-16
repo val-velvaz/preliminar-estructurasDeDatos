@@ -44,7 +44,7 @@ Este proyecto fue creado con mucho cariño utilizando las siguientes herramienta
 <div align="center">
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white&color=FFD1DC" alt="C++">
   <img src="https://img.shields.io/badge/Makefile-4298B8?style=for-the-badge&logo=gnu-make&logoColor=white&color=D4F0F0" alt="Makefile">
-  <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white&color=C1E1C1" alt="VSCode">
+  <img src="https://img.shields.io/badge/Visual%2BStudio%2BCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white&color=C1E1C1" alt="VSCode">
 </div>
 
 ---
@@ -146,19 +146,19 @@ graph TD
     class Quantity pink
     class Category blue
     
-    UserInterface -- "myBook" o-- RecipeBook
-    RecipeBook -- "recipes" *-- ListRecipe
-    ListRecipe -- "contains" o-- Recipe
-    Recipe -- "author" *-- Author
-    Recipe -- "category" *-- Category
-    Recipe -- "prepTime" *-- Duration
-    Recipe -- "procedure" *-- Procedure
-    Recipe -- "recipeName" *-- Name
-    Recipe -- "ingredients" *-- ListIngredient
-    ListIngredient -- "contains" o-- Ingredient
-    Ingredient -- "ingredientName" *-- Name
-    Ingredient -- "quantity" *-- Quantity
-    Author -- "authorName" *-- Name
+    UserInterface o-- "myBook" RecipeBook
+    RecipeBook *-- "recipes" ListRecipe
+    ListRecipe o-- " " Recipe
+    Recipe *-- "author" Author
+    Recipe *-- "category" Category
+    Recipe *-- "prepTime" Duration
+    Recipe *-- "procedure" Procedure
+    Recipe *-- "recipeName" Name
+    Recipe *-- "ingredients" ListIngredient
+    ListIngredient o-- " " Ingredient
+    Ingredient *-- "ingredientName" Name
+    Ingredient *-- "quantity" Quantity
+    Author *-- "authorName" Name
 
     class Recipe {
       <<class>>
