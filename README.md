@@ -317,4 +317,19 @@ classDiagram
     Ingredient ..> std_ostream
     Ingredient ..> std_istream
     RecipeBook ..> std_string
+
+    %% Estilos de color compatibles con GitHub
+    classDef coreClass fill:#e1f5ff,stroke:#01579b,stroke-width:2px,color:#000
+    classDef utilityClass fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef containerClass fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef enumClass fill:#ffccbc,stroke:#bf360c,stroke-width:2px,color:#000
+    classDef libraryClass fill:#e0e0e0,stroke:#616161,stroke-width:1px,color:#000,stroke-dasharray: 5 5
+    classDef uiClass fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px,color:#000
+
+    class Recipe,RecipeBook coreClass
+    class Name,Quantity,Duration,Procedure,Author,Ingredient utilityClass
+    class List containerClass
+    class Category enumClass
+    class std_string,std_ostream,std_istream libraryClass
+    class UserInterface uiClass
 ```
