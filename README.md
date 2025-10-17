@@ -107,42 +107,46 @@ Aquí tienes un vistazo a cómo se conectan todas las piezas de este adorable pr
 
 ```mermaid
 graph TD
-    subgraph "Core System"
-        UserInterface["UserInterface<br>-myBook: RecipeBook<br>+run()"]
-        RecipeBook["RecipeBook<br>-recipes: List&lt;Recipe&gt;<br>+addRecipe(recipe: const Recipe&)<br>+findRecipeByName(name: const Name&): int<br>+deleteRecipeByName(name: const Name&)<br>+getRecipe(index: int): Recipe&<br>+saveToFile(filename: const string&)<br>+loadFromFile(filename: const string&)"]
-        List_Recipe_["List<Recipe>"]
+    %% --- Subgraphs for Organization ---
+    subgraph "Core Logic"
+        UI["UserInterface<br>-myBook: RecipeBook<br>+run()"]
+        Book["RecipeBook<br>-recipes: List&lt;Recipe&gt;<br>+addRecipe(const Recipe&)<br>+findRecipeByName(const Name&): int<br>+deleteRecipeByName(const Name&)<br>+saveToFile(const string&)<br>+loadFromFile(const string&)"]
+        ListRecipe["List&lt;Recipe&gt;"]
+        ListIngredient["List&lt;Ingredient&gt;"]
     end
 
     subgraph "Data Models"
-        Recipe["Recipe<br>-recipeName: Name<br>-author: Author<br>-category: Category<br>-prepTime: Duration<br>-procedure: Procedure<br>-ingredients: List&lt;Ingredient&gt;<br>+toString(): string"]
-        Ingredient["Ingredient<br>-ingredientName: Name<br>-quantity: Quantity<br>+toString(): string"]
-        List_Ingredient_["List<Ingredient>"]
+        Rec["Recipe<br>-recipeName: Name<br>-author: Author<br>-category: Category<br>-prepTime: Duration<br>-procedure: Procedure<br>-ingredients: List&lt;Ingredient&gt;<br>+toString(): string"]
+        Ing["Ingredient<br>-ingredientName: Name<br>-quantity: Quantity<br>+toString(): string"]
     end
 
-    subgraph "Primitive Types"
-        Author["Author<br>-authorName: Name"]
-        Name["Name<br>-value: string"]
-        Duration["Duration<br>-minutes: int"]
-        Procedure["Procedure<br>-steps: string"]
-        Quantity["Quantity<br>-value: string"]
+    subgraph "Primitive Data Wrappers"
+        Auth["Author<br>-authorName: Name<br>+toString(): string"]
+        Nm["Name<br>-value: string<br>+toString(): string"]
+        Dur["Duration<br>-minutes: int<br>+toString(): string"]
+        Proc["Procedure<br>-steps: string<br>+toString(): string"]
+        Qty["Quantity<br>-value: string<br>+toString(): string"]
     end
 
     subgraph "Enumerations"
-        Category["<<enumeration>><br>Category<br>DESAYUNO<br>COMIDA<br>CENA<br>NAVIDENO<br>NONE"]
+        Cat["<<enumeration>><br>Category<br>DESAYUNO<br>COMIDA<br>CENA<br>NAVIDENO<br>NONE"]
     end
 
-    %% Relationships
-    UserInterface o-- RecipeBook
-    RecipeBook *-- List_Recipe_
-    List_Recipe_ o-- Recipe
-    Recipe *-- List_Ingredient_
-    List_Ingredient_ o-- Ingredient
-    Recipe *-- Author
-    Recipe *-- Name
-    Recipe *-- Category
-    Recipe *-- Duration
-    Recipe *-- Procedure
-    Ingredient *-- Name
-    Ingredient *-- Quantity
-    Author *-- Name
+    %% --- Relationships (Using universally compatible arrows) ---
+    UI --> Book : manages
+    Book --> ListRecipe : contains
+    ListRecipe --> Rec
+
+    Rec --> Nm : recipeName
+    Rec --> Auth : author
+    Rec --> Cat : category
+    Rec --> Dur : prepTime
+    Rec --> Proc : procedure
+    Rec --> ListIngredient : ingredients
+
+    ListIngredient --> Ing
+    Ing --> Nm : ingredientName
+    Ing --> Qty : quantity
+
+    Auth --> Nm : authorName
 ```
