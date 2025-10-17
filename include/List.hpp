@@ -13,6 +13,10 @@ private:
     void copyAll(const List<T>& other);
     void swapData(T*& a, T*& b);
 
+    void quickSortRecursive(int left, int right, int (*cmp)(const T&, const T&));
+    void mergeSortRecursive(int left, int right, int (*cmp)(const T&, const T&));
+    void merge(int left, int mid, int right, int (*cmp)(const T&, const T&));
+
 public:
     List();
     List(const List& other);
@@ -39,6 +43,8 @@ public:
     void sortInsert(int (*cmp)(const T&, const T&));
     void sortSelect(int (*cmp)(const T&, const T&));
     void sortShell(int (*cmp)(const T&, const T&));
+    void sortQuick(int (*cmp)(const T&, const T&));
+    void sortMerge(int (*cmp)(const T&, const T&));
 };
 
 template <class T>
@@ -242,5 +248,40 @@ void List<T>::sortShell(int (*cmp)(const T&, const T&)) {
             i++;
         }
         dif *= fact;
+    }
+}
+
+template <class T>
+void List<T>::sortQuick(int (*cmp)(const T&, const T&)) {
+    if (!isEmpty()) {
+        quickSortRecursive(0, this->lastPos, cmp);
+    }
+}
+
+template <class T>
+void List<T>::quickSortRecursive(int left, int right, int (*cmp)(const T&, const T&)) {
+    int i = left;
+    int j = right;
+    T* pivot = this->data[(left + right) / 2];
+
+    while (i <= j) {
+        while (cmp(*this->data[i], *pivot) < 0) {
+            i++;
+        }
+        while (cmp(*this->data[j], *pivot) > 0) {
+            j--;
+        }
+        if (i <= j) {
+            this->swapData(this->data[i], this->data[j]);
+            i++;
+            j--;
+        }
+    }
+
+    if (left < j) {
+        quickSortRecursive(left, j, cmp);
+    }
+    if (i < right) {
+        quickSortRecursive(i, right, cmp);
     }
 }

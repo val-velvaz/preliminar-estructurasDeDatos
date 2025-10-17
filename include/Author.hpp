@@ -1,5 +1,5 @@
-// FileName: Author.h
 #pragma once
+
 #include "Name.hpp"
 #include <iostream>
 
