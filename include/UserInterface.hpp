@@ -7,8 +7,8 @@ private:
     RecipeBook myBook;
     void clearInputBuffer();
     void pressEnterToContinue();
+    void clearScreen();
 
-    // Métodos para cada opción del menú
     void addNewRecipe();
     void deleteRecipe();
     void findRecipeByName();

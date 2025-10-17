@@ -1,0 +1,220 @@
+29
+Huevos Rancheros
+Julia Child0
+0 36 0
+Freir las tortillas en aceite caliente.
+Freir los huevos al gusto.
+Colocar los huevos sobre las tortillas.
+Banar con la salsa caliente.
+Espolvorear con cebolla y queso.
+
+0
+Molletes
+Gordon Ramsay0
+0 26 0
+Partir los bolillos por la mitad.
+Untar los frijoles sobre el pan.
+Cubrir con queso.
+Hornear hasta que el queso se derrita.
+Servir con pico de gallo (jitomate, cebolla, chile y cilantro).
+
+0
+0 10 0
+Cocer la avena con la leche.4
+0 11 0
+
+0
+Huevos a la Mexicana
+Martha Stewart0
+0 31 0
+Sofreir el jitomate, la cebolla y el chile en aceite.
+Batir los huevos y agregarlos al sarten.
+Cocer hasta que esten listos.
+Servir con tortillas calientes.
+
+0
+0 25 0
+Freir ligeramente las tortillas.4
+0 11 0
+
+0
+Hot Cakes
+Nigella Lawson0
+0 31 0
+Mezclar todos los ingredientes.
+Verter porciones de la mezcla en un sarten caliente.
+Cocer por ambos lados.
+Servir con miel o mermelada.
+
+0
+0 25 0
+Freir ligeramente las tortillas.4
+0 11 0
+
+0
+Omelette de Jamon y Queso
+Anthony Bourdain0
+0 26 0
+Batir los huevos.
+Verter en un sarten con mantequilla caliente.
+Cuando este casi cocido, agregar el jamon y el queso.
+Doblar por la mitad y servir.
+
+0
+0 35 0
+Rellenar las tortillas con pure de papa.4
+0 11 0
+
+0
+Sopa de Tortilla
+Patricia Quintana1
+0 56 0
+Servir los totopos en un plato hondo.
+Verter el caldo de pollo caliente.
+Decorar con crema, queso, aguacate y chile pasilla.
+
+0
+Pollo en Salsa Verde
+Ferran Adria1
+1 11 0
+Sellar el pollo en una cacerola.
+Agregar la salsa verde, papas y zanahorias.
+Cocer a fuego lento hasta que el pollo y las verduras esten suaves.
+
+0
+Tostadas de Tinga
+Susana Palazuelos1
+0 51 0
+Colocar la tinga sobre las tostadas.
+Anadir lechuga, crema y queso.
+
+0
+Lentejas
+Paulina Abascal1
+1 31 0
+Cocer las lentejas.
+Freir el tocino y sofreir la cebolla y el jitomate.
+Mezclar todo con las lentejas.
+Servir con rodajas de platano frito.
+
+0
+Cochinita Pibil
+Roberto Solis1
+4 11 0
+Marinar la carne con el achiote y el jugo de naranja.
+Envolver en hojas de platano.
+Hornear a fuego lento por 3-4 horas.
+
+0
+Quesadillas
+Gabriela Camara2
+0 21 0
+Rellenar las tortillas con queso.
+Calentar en un comal hasta que el queso se derrita.
+Servir con salsa.
+
+0
+Tacos al Pastor
+Desconocido2
+2 11 0
+Cocer la carne en un trompo o sarten.
+Servir en tortillas con pina, cebolla, cilantro y salsa.
+
+0
+Torta de Jamon
+Chespirito2
+0 16 0
+Partir el bolillo y untar mayonesa.
+Rellenar con el resto de los ingredientes.
+
+0
+Club Sandwich
+Anonimo2
+0 26 0
+Tostar el pan.
+Armar el sandwich en capas.
+Cortar en triangulos y sujetar con palillos.
+
+0
+Sopa de Fideo
+Mama2
+0 36 0
+Freir los fideos hasta que esten dorados.
+Licuar el caldo con la cebolla y el ajo.
+Verter el caldo sobre los fideos y cocer.
+
+0
+Pavo Relleno
+Tu Abuela3
+5 11 0
+Rellenar el pavo.
+Untar con mantequilla y sazonar.
+Hornear por 4-5 horas, banando con sus jugos.
+
+0
+Romeritos
+Tradicion Mexicana3
+1 41 0
+Cocer los romeritos y las papas.
+Mezclar con el mole caliente.
+Anadir las tortitas de camaron.
+
+0
+Lomo de Cerdo Adobado
+Chef Oropeza3
+3 11 0
+Marinar el lomo en el adobo.
+Hornear por 2-3 horas.
+
+0
+Ponche Navideno
+Espiritu Navideno3
+1 11 0
+Hervir todos los ingredientes en una olla grande.
+
+0
+Tamales
+Abuelita3
+2 11 0
+Rellenar las hojas de maiz con masa y relleno.
+Cocer al vapor por 1-2 horas.
+
+0
+Sopa de Lentejas
+Karlos Arguinano1
+1 21 0
+Cocer todos los ingredientes juntos hasta que las lentejas esten suaves.
+
+0
+Pollo a la Naranja
+Anonimo1
+0 51 0
+Sellar el pollo.
+Banar con la mezcla de jugo, soya y ralladura.
+Hornear o cocer en sarten.
+
+0
+Crema de Champinones
+Auguste Escoffier2
+0 46 0
+Sofreir la cebolla y los champinones.
+Licuar con caldo y crema.
+Hervir y sazonar.
+
+0
+Pay de Limon
+Postres de la Abuela0
+0 36 0
+Licuar las leches con el jugo de limon.
+En un refractario, alternar capas de galletas y la mezcla de limon.
+Refrigerar hasta que cuaje.
+
+0
+Arroz con Leche
+Tradicion Casera2
+0 56 0
+Cocer el arroz con la leche y la canela.
+Endulzar al gusto.
+Servir frio o caliente, decorado con pasas y canela.
+
+0

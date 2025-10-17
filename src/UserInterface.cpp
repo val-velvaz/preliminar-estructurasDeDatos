@@ -2,6 +2,7 @@
 #include <iostream>
 #include <limits>
 #include <stdexcept>
+#include <cstdlib> // Necesario para system()
 
 void UserInterface::clearInputBuffer() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -12,11 +13,20 @@ void UserInterface::pressEnterToContinue() {
     clearInputBuffer();
 }
 
+void UserInterface::clearScreen() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
 UserInterface::UserInterface() {}
 
 void UserInterface::run() {
     int choice;
     do {
+        clearScreen();
         std::cout << "\n--- Menu Principal del Recetario ---\n"
                   << "1.  Agregar Receta\n"
                   << "2.  Eliminar Receta\n"
@@ -40,6 +50,8 @@ void UserInterface::run() {
         } else {
             clearInputBuffer();
         }
+
+        clearScreen();
 
         switch (choice) {
             case 1: addNewRecipe(); break;
@@ -214,6 +226,7 @@ Category UserInterface::selectCategory() {
 void UserInterface::modifyRecipeMenu(Recipe& recipe) {
     int choice;
     do {
+        clearScreen();
         std::cout << "\n--- Modificar Receta: " << recipe.getName().toString() << " ---\n"
                 << "1. Modificar Procedimiento\n"
                 << "2. Anadir Ingrediente\n"
@@ -225,6 +238,8 @@ void UserInterface::modifyRecipeMenu(Recipe& recipe) {
         std::cin >> choice;
         clearInputBuffer();
 
+        clearScreen();
+
         std::string tempName;
         switch(choice) {
             case 1: {
@@ -234,7 +249,7 @@ void UserInterface::modifyRecipeMenu(Recipe& recipe) {
                     newSteps += line + "\n";
                 }
                 recipe.setProcedure(Procedure(newSteps));
-                std::cout << "Procediminto actualizado.\n";
+                std::cout << "Procedimiento actualizado.\n";
                 break;
             }
             case 2: {
