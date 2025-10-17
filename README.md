@@ -24,22 +24,18 @@
 
 ### 🎀 Presentación Amable
 
-¡Hola! 👋 ¿Cansada de tener tus recetas esparcidas en notas adhesivas, cuadernos viejos o en enlaces perdidos en tu navegador? ¡Este **Recetario Mágico** es la solución perfecta para ti! 💖
-
-Es una aplicación de consola súper adorable y fácil de usar, desarrollada en C++, que te permite:
-- **Añadir** nuevas y deliciosas recetas.
+Es una aplicación de consola súper fácil de usar, desarrollada en C++, que te permite:
+- **Añadir** nuevas recetas.
 - **Guardar** todos los detalles: ingredientes, tiempo de preparación, autor y los pasos a seguir.
 - **Organizar** tus platillos por categorías como desayuno, comida, cena y ¡hasta recetas navideñas!
 - **Buscar, modificar y eliminar** recetas cuando lo necesites.
-- **Guardar y cargar** tu colección completa desde un archivo para que nunca pierdas tus creaciones.
-
-¡Es como tener tu propio libro de cocina digital, siempre listo para inspirarte en tu próxima aventura culinaria!
+- **Guardar y cargar** tu colección completa desde un archivo.
 
 ---
 
 ### 🎨 Paleta Tecnológica
 
-Este proyecto fue creado con mucho cariño utilizando las siguientes herramientas:
+Este proyecto fue creado con utilizando las siguientes herramientas:
 
 <div align="center">
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white&color=FFD1DC" alt="C++">
@@ -84,7 +80,7 @@ Este proyecto fue creado con mucho cariño utilizando las siguientes herramienta
     ```
 
 4.  **Disfruta tu Recetario:**
-    ¡Y listo! Se desplegará un menú interactivo en tu consola para que comiences a añadir tus recetas favoritas.
+    ¡Y listo! Se desplegará un menú interactivo en tu consola para que comiences a añadir tus recetas.
 
 ---
 
@@ -103,50 +99,222 @@ Este proyecto fue creado con mucho cariño utilizando las siguientes herramienta
 
 ### 🏛️ Diagrama de Arquitectura (UML)
 
-Aquí tienes un vistazo a cómo se conectan todas las piezas de este adorable proyecto, ¡compatible con Mermaid v8!
+Aquí tienes un vistazo a cómo se conectan todas las piezas de este proyecto.
 
 ```mermaid
-graph TD
-    %% --- Subgraphs for Organization ---
-    subgraph "Core Logic"
-        UI["UserInterface<br>-myBook: RecipeBook<br>+run()"]
-        Book["RecipeBook<br>-recipes: List&lt;Recipe&gt;<br>+addRecipe(const Recipe&)<br>+findRecipeByName(const Name&): int<br>+deleteRecipeByName(const Name&)<br>+saveToFile(const string&)<br>+loadFromFile(const string&)"]
-        ListRecipe["List&lt;Recipe&gt;"]
-        ListIngredient["List&lt;Ingredient&gt;"]
-    end
+classDiagram
+    direction TD
 
-    subgraph "Data Models"
-        Rec["Recipe<br>-recipeName: Name<br>-author: Author<br>-category: Category<br>-prepTime: Duration<br>-procedure: Procedure<br>-ingredients: List&lt;Ingredient&gt;<br>+toString(): string"]
-        Ing["Ingredient<br>-ingredientName: Name<br>-quantity: Quantity<br>+toString(): string"]
-    end
+    class Name {
+        -std::string value
+        +Name()
+        +Name(const std::string& value)
+        +getValue() std::string
+        +setValue(const std::string& value) void
+        +toString() std::string
+    }
 
-    subgraph "Primitive Data Wrappers"
-        Auth["Author<br>-authorName: Name<br>+toString(): string"]
-        Nm["Name<br>-value: string<br>+toString(): string"]
-        Dur["Duration<br>-minutes: int<br>+toString(): string"]
-        Proc["Procedure<br>-steps: string<br>+toString(): string"]
-        Qty["Quantity<br>-value: string<br>+toString(): string"]
-    end
+    class Author {
+        -Name authorName
+        +Author()
+        +Author(const Name& name)
+        +getName() Name
+        +setName(const Name& name) void
+        +toString() std::string
+    }
 
-    subgraph "Enumerations"
-        Cat["<<enumeration>><br>Category<br>DESAYUNO<br>COMIDA<br>CENA<br>NAVIDENO<br>NONE"]
-    end
+    class Quantity {
+        -std::string value
+        +Quantity()
+        +Quantity(const std::string& value)
+        +getValue() std::string
+        +setValue(const std::string& value) void
+        +toString() std::string
+    }
 
-    %% --- Relationships (Simplified for GitHub Compatibility) ---
-    UI --> Book
-    Book --> ListRecipe
-    ListRecipe --> Rec
+    class Duration {
+        -int hours
+        -int minutes
+        -int seconds
+        -normalize() void
+        +Duration()
+        +Duration(int h, int m, int s)
+        +getHours() int
+        +setHours(int h) void
+        +getMinutes() int
+        +setMinutes(int m) void
+        +getSeconds() int
+        +setSeconds(int s) void
+        +getTotalInSeconds() int
+        +toString() std::string
+    }
 
-    Rec --> Nm
-    Rec --> Auth
-    Rec --> Cat
-    Rec --> Dur
-    Rec --> Proc
-    Rec --> ListIngredient
+    class Procedure {
+        -std::string steps
+        +Procedure()
+        +Procedure(const std::string& steps)
+        +getSteps() std::string
+        +setSteps(const std::string& steps) void
+        +toString() std::string
+    }
 
-    ListIngredient --> Ing
-    Ing --> Nm
-    Ing --> Qty
+    class Ingredient {
+        -Name ingredientName
+        -Quantity quantity
+        +getName() Name
+        +setName(const Name& name) void
+        +getQuantity() Quantity
+        +setQuantity(const Quantity& quantity) void
+        +toString() std::string
+    }
 
-    Auth --> Nm
+    class Category {
+        <<enumeration>>
+        DESAYUNO
+        COMIDA
+        CENA
+        NAVIDENO
+        NONE
+    }
+
+    class List~T~ {
+        -T** data
+        -int lastPos
+        -int capacity
+        -isValidPos(int pos) bool
+        -copyAll(const List~T~& other) void
+        -swapData(T*& a, T*& b) void
+        +List()
+        +List(const List& other)
+        +~List()
+        +operator=(const List~T~& other) List~T~&
+        +initialize() void
+        +isEmpty() bool
+        +isFull() bool
+        +insert(int pos, const T& element) void
+        +remove(int pos) void
+        +get(int pos) T
+        +get(int pos) T&
+        +getFirst() int
+        +getLast() int
+        +clear() void
+        +toString() std::string
+        +sortBubble(int (*cmp)(const T&, const T&)) void
+        +sortInsert(int (*cmp)(const T&, const T&)) void
+        +sortSelect(int (*cmp)(const T&, const T&)) void
+        +sortShell(int (*cmp)(const T&, const T&)) void
+    }
+
+    class Recipe {
+        -Name recipeName
+        -Author author
+        -Category category
+        -Duration prepTime
+        -Procedure procedure
+        -List~Ingredient~ ingredients
+        +getName() Name
+        +setName(const Name& name) void
+        +getAuthor() Author
+        +setAuthor(const Author& author) void
+        +getCategory() Category
+        +setCategory(Category category) void
+        +getPrepTime() Duration
+        +setPrepTime(const Duration& prepTime) void
+        +getProcedure() Procedure
+        +setProcedure(const Procedure& procedure) void
+        +getIngredients() List~Ingredient~&
+        +getIngredients() const List~Ingredient~&
+        +setIngredients(const List~Ingredient~& ingredients) void
+        +addIngredient(const Ingredient& ingredient) void
+        +deleteIngredient(const Name& ingredientName) bool
+        +deleteAllIngredients() void
+        +modifyIngredientQuantity(const Name& ingredientName, const Quantity& newQuantity) bool
+        +categoryToString() std::string
+        +toString() std::string
+        +compareByName(const Recipe& a, const Recipe& b)$ int
+        +compareByPrepTime(const Recipe& a, const Recipe& b)$ int
+    }
+
+    class RecipeBook {
+        -List~Recipe~ recipes
+        +getRecipes() const List~Recipe~&
+        +setRecipes(const List~Recipe~& recipes) void
+        +addRecipe(const Recipe& recipe) void
+        +findRecipeByName(const Name& name) int
+        +findRecipeByCategory(Category category) Recipe*
+        +deleteRecipeByName(const Name& name) void
+        +deleteAllRecipes() void
+        +sortRecipes(int criteria, int algorithm) void
+        +getRecipe(int index) Recipe&
+        +saveToFile(const std::string& filename) void
+        +loadFromFile(const std::string& filename) void
+    }
+
+    class UserInterface {
+        -RecipeBook myBook
+        -clearInputBuffer() void
+        -pressEnterToContinue() void
+        -addNewRecipe() void
+        -deleteRecipe() void
+        -findRecipeByName() void
+        -findRecipeByCategory() void
+        -modifyRecipe() void
+        -showAllRecipes() void
+        -showRecipesByCategory() void
+        -sortMenu() void
+        -saveToFile() void
+        -loadFromFile() void
+        -deleteAllRecipes() void
+        -modifyRecipeMenu(Recipe& recipe) void
+        -selectCategory() Category
+        +UserInterface()
+        +run() void
+    }
+
+    class std_string {
+        <<library>>
+    }
+
+    class std_ostream {
+        <<library>>
+    }
+
+    class std_istream {
+        <<library>>
+    }
+
+    Author *-- Name
+    Ingredient *-- Name
+    Ingredient *-- Quantity
+    Recipe *-- Name
+    Recipe *-- Author
+    Recipe *-- Duration
+    Recipe *-- Procedure
+    Recipe *-- List~Ingredient~
+    Recipe --> Category
+    RecipeBook *-- List~Recipe~
+    UserInterface *-- RecipeBook
+
+    Name *-- std_string
+    Quantity *-- std_string
+    Procedure *-- std_string
+    Duration ..> std_string
+    Author ..> std_string
+    Ingredient ..> std_string
+    Recipe ..> std_string
+    List~T~ ..> std_string
+
+    Name ..> std_ostream
+    Name ..> std_istream
+    Author ..> std_ostream
+    Author ..> std_istream
+    Quantity ..> std_ostream
+    Quantity ..> std_istream
+    Duration ..> std_ostream
+    Duration ..> std_istream
+    Procedure ..> std_ostream
+    Procedure ..> std_istream
+    Ingredient ..> std_ostream
+    Ingredient ..> std_istream
+    RecipeBook ..> std_string
 ```
