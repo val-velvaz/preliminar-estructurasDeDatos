@@ -108,10 +108,10 @@ classDiagram
     class Name {
         -std::string value
         +Name()
-        +Name(const std::string& value)
-        +getValue() std::string
-        +setValue(const std::string& value) void
-        +toString() std::string
+        +Name(const std_string& value)
+        +getValue() std_string
+        +setValue(const std_string& value) void
+        +toString() std_string
     }
 
     class Author {
@@ -120,16 +120,16 @@ classDiagram
         +Author(const Name& name)
         +getName() Name
         +setName(const Name& name) void
-        +toString() std::string
+        +toString() std_string
     }
 
     class Quantity {
         -std::string value
         +Quantity()
-        +Quantity(const std::string& value)
-        +getValue() std::string
-        +setValue(const std::string& value) void
-        +toString() std::string
+        +Quantity(const std_string& value)
+        +getValue() std_string
+        +setValue(const std_string& value) void
+        +toString() std_string
     }
 
     class Duration {
@@ -146,16 +146,16 @@ classDiagram
         +getSeconds() int
         +setSeconds(int s) void
         +getTotalInSeconds() int
-        +toString() std::string
+        +toString() std_string
     }
 
     class Procedure {
         -std::string steps
         +Procedure()
-        +Procedure(const std::string& steps)
-        +getSteps() std::string
-        +setSteps(const std::string& steps) void
-        +toString() std::string
+        +Procedure(const std_string& steps)
+        +getSteps() std_string
+        +setSteps(const std_string& steps) void
+        +toString() std_string
     }
 
     class Ingredient {
@@ -165,7 +165,7 @@ classDiagram
         +setName(const Name& name) void
         +getQuantity() Quantity
         +setQuantity(const Quantity& quantity) void
-        +toString() std::string
+        +toString() std_string
     }
 
     class Category {
@@ -177,32 +177,33 @@ classDiagram
         NONE
     }
 
-    class List~T~ {
+    class ListT {
+        <<template>>
         -T** data
         -int lastPos
         -int capacity
         -isValidPos(int pos) bool
-        -copyAll(const List~T~& other) void
+        -copyAll(const ListT& other) void
         -swapData(T*& a, T*& b) void
         +List()
         +List(const List& other)
         +~List()
-        +operator=(const List~T~& other) List~T~&
+        +operator_assign(const ListT& other) ListT&
         +initialize() void
         +isEmpty() bool
         +isFull() bool
         +insert(int pos, const T& element) void
         +remove(int pos) void
         +get(int pos) T
-        +get(int pos) T&
+        +get_ref(int pos) T&
         +getFirst() int
         +getLast() int
         +clear() void
-        +toString() std::string
-        +sortBubble(int (*cmp)(const T&, const T&)) void
-        +sortInsert(int (*cmp)(const T&, const T&)) void
-        +sortSelect(int (*cmp)(const T&, const T&)) void
-        +sortShell(int (*cmp)(const T&, const T&)) void
+        +toString() std_string
+        +sortBubble(int cmp) void
+        +sortInsert(int cmp) void
+        +sortSelect(int cmp) void
+        +sortShell(int cmp) void
     }
 
     class Recipe {
@@ -211,7 +212,7 @@ classDiagram
         -Category category
         -Duration prepTime
         -Procedure procedure
-        -List~Ingredient~ ingredients
+        -ListT~Ingredient~ ingredients
         +getName() Name
         +setName(const Name& name) void
         +getAuthor() Author
@@ -222,23 +223,23 @@ classDiagram
         +setPrepTime(const Duration& prepTime) void
         +getProcedure() Procedure
         +setProcedure(const Procedure& procedure) void
-        +getIngredients() List~Ingredient~&
-        +getIngredients() const List~Ingredient~&
-        +setIngredients(const List~Ingredient~& ingredients) void
+        +getIngredients() ListT~Ingredient~&
+        +getIngredients_const() const ListT~Ingredient~&
+        +setIngredients(const ListT~Ingredient~& ingredients) void
         +addIngredient(const Ingredient& ingredient) void
         +deleteIngredient(const Name& ingredientName) bool
         +deleteAllIngredients() void
-        +modifyIngredientQuantity(const Name& ingredientName, const Quantity& newQuantity) bool
-        +categoryToString() std::string
-        +toString() std::string
+        +modifyIngredientQuantity(const Name& name, const Quantity& qty) bool
+        +categoryToString() std_string
+        +toString() std_string
         +compareByName(const Recipe& a, const Recipe& b)$ int
         +compareByPrepTime(const Recipe& a, const Recipe& b)$ int
     }
 
     class RecipeBook {
-        -List~Recipe~ recipes
-        +getRecipes() const List~Recipe~&
-        +setRecipes(const List~Recipe~& recipes) void
+        -ListT~Recipe~ recipes
+        +getRecipes() const ListT~Recipe~&
+        +setRecipes(const ListT~Recipe~& recipes) void
         +addRecipe(const Recipe& recipe) void
         +findRecipeByName(const Name& name) int
         +findRecipeByCategory(Category category) Recipe*
@@ -246,8 +247,8 @@ classDiagram
         +deleteAllRecipes() void
         +sortRecipes(int criteria, int algorithm) void
         +getRecipe(int index) Recipe&
-        +saveToFile(const std::string& filename) void
-        +loadFromFile(const std::string& filename) void
+        +saveToFile(const std_string& filename) void
+        +loadFromFile(const std_string& filename) void
     }
 
     class UserInterface {
@@ -290,9 +291,9 @@ classDiagram
     Recipe *-- Author
     Recipe *-- Duration
     Recipe *-- Procedure
-    Recipe *-- List~Ingredient~
+    Recipe *-- ListT
     Recipe --> Category
-    RecipeBook *-- List~Recipe~
+    RecipeBook *-- ListT
     UserInterface *-- RecipeBook
 
     Name *-- std_string
@@ -302,7 +303,7 @@ classDiagram
     Author ..> std_string
     Ingredient ..> std_string
     Recipe ..> std_string
-    List~T~ ..> std_string
+    ListT ..> std_string
 
     Name ..> std_ostream
     Name ..> std_istream
@@ -318,18 +319,18 @@ classDiagram
     Ingredient ..> std_istream
     RecipeBook ..> std_string
 
-    %% Estilos de color compatibles con GitHub
-    classDef coreClass fill:#e1f5ff,stroke:#01579b,stroke-width:2px,color:#000
-    classDef utilityClass fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
-    classDef containerClass fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
-    classDef enumClass fill:#ffccbc,stroke:#bf360c,stroke-width:2px,color:#000
-    classDef libraryClass fill:#e0e0e0,stroke:#616161,stroke-width:1px,color:#000,stroke-dasharray: 5 5
-    classDef uiClass fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px,color:#000
-
-    class Recipe,RecipeBook coreClass
-    class Name,Quantity,Duration,Procedure,Author,Ingredient utilityClass
-    class List containerClass
-    class Category enumClass
-    class std_string,std_ostream,std_istream libraryClass
-    class UserInterface uiClass
+    style Recipe fill:#e1f5ff,stroke:#01579b,stroke-width:2px,color:#000
+    style RecipeBook fill:#e1f5ff,stroke:#01579b,stroke-width:2px,color:#000
+    style Name fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style Quantity fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style Duration fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style Procedure fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style Author fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style Ingredient fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style ListT fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    style Category fill:#ffccbc,stroke:#bf360c,stroke-width:2px,color:#000
+    style std_string fill:#e0e0e0,stroke:#616161,stroke-width:1px,color:#000
+    style std_ostream fill:#e0e0e0,stroke:#616161,stroke-width:1px,color:#000
+    style std_istream fill:#e0e0e0,stroke:#616161,stroke-width:1px,color:#000
+    style UserInterface fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px,color:#000
 ```
