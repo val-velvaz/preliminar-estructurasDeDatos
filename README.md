@@ -132,21 +132,21 @@ graph TD
         Cat["<<enumeration>><br>Category<br>DESAYUNO<br>COMIDA<br>CENA<br>NAVIDENO<br>NONE"]
     end
 
-    %% --- Relationships (Using universally compatible arrows) ---
-    UI --> Book : manages
-    Book --> ListRecipe : contains
+    %% --- Relationships (Simplified for GitHub Compatibility) ---
+    UI --> Book
+    Book --> ListRecipe
     ListRecipe --> Rec
 
-    Rec --> Nm : recipeName
-    Rec --> Auth : author
-    Rec --> Cat : category
-    Rec --> Dur : prepTime
-    Rec --> Proc : procedure
-    Rec --> ListIngredient : ingredients
+    Rec --> Nm
+    Rec --> Auth
+    Rec --> Cat
+    Rec --> Dur
+    Rec --> Proc
+    Rec --> ListIngredient
 
     ListIngredient --> Ing
-    Ing --> Nm : ingredientName
-    Ing --> Qty : quantity
+    Ing --> Nm
+    Ing --> Qty
 
-    Auth --> Nm : authorName
+    Auth --> Nm
 ```
