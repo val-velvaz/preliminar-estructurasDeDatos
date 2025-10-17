@@ -1,0 +1,6 @@
+# Ignorar archivos de compilación
+*.o
+*.d
+
+# Ignorar el ejecutable
+output/main.exe

@@ -1,0 +1,20 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.o": true,
+    "**/*.obj": true,
+    "**/*.exe": true,
+    "**/*.dll": true,
+    "**/*.a": true,
+    "**/*.lib": true,
+    "**/*.so": true,
+    "**/*.out": true,
+    "**/*.d": true,
+    "output/": true
+  }
+}
